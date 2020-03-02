@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#msg{
+		color:red;
+	}
+</style>
+</head>
+<body>
+	我的登录页面 <br/>
+	<!-- 信息进行判断后再显示 -->
+	<span id="msg" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></span><br/>
+	<form th:action="@{/login}" method="post">
+		姓名：<input type="text" name="uname"><br/>
+		密码：<input type="password" name="password"><br/>
+		<input type="submit" value="登录"><br/>
+	</form>
+</body>
+</html>

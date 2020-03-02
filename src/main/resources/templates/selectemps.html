@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" th:src="@{/js/jquery-2.1.4.js}"></script>
+<script type="text/javascript">
+	$(function(){
+		//alert("aaa");
+		$(".delete").click(function(){
+			//alert("bbb");
+			$("#deleteform").attr("action",$(this).attr("deleteurl")).submit();
+		});
+	});
+</script>
+</head>
+<body>
+	所有员工信息<br/>
+	<table>
+		<tr>
+			<td>员工编号</td>
+			<td>员工姓名</td>
+			<td>入职日期</td>
+			<td>所属部门</td>
+			<td>编辑</td>
+		</tr>
+		<tr th:each="emp:${emps}">
+			<td>[[${emp.eid}]]</td>
+			<td>[[${emp.ename}]]</td>
+			<!-- 日期格式修改 -->
+			<!-- <td>[[${emp.date}]]</td> -->
+			<td>[[${#dates.format(emp.date,"yyyy/MM/dd")}]]</td>
+			<td>[[${emp.dep.dname}]]</td>
+			<td>
+				<a th:href="@{/emp/}+${emp.eid}">编辑</a>
+				<a class="delete" th:attr="deleteurl=@{/emp/}+${emp.eid}" href="#">删除</a>
+			</td>
+		</tr>
+	</table>
+	<form id="deleteform" method="post">
+		<input type="hidden" name="_method" value="delete">
+	</form>
+	<a th:href="@{/emp}">添加员工</a><br/>
+	<a th:href="@{/logout}">退出登录</a><br/>
+</body>
+</html>

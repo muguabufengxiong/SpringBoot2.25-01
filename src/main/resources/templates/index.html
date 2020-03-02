@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	欢迎 [[${session.uname}]] 进入员工主页<br/>
+	<a th:href="@{/emps}">查看所有员工</a><br/>
+	<a th:href="@{/emp}">添加员工</a><br/>
+	<a th:href="@{/logout}">退出登录</a><br/>
+</body>
+</html>

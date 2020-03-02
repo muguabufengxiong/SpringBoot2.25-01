@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#msg{
+		color:red;
+	}
+</style>
+</head>
+<body>
+	修改员工页面 <br/>
+	<form th:action="@{/emp}" method="post">
+		<!-- 必须发put请求 -->
+		<input type="hidden" name="_method" value="put">
+		姓名：<input type="text" name="ename" th:value="${emp.ename}"><br/>
+		密码：<input type="password" name="password"><br/>
+		日期：<input type="text" name="date" th:value="${#dates.format(emp.date,'yyyy/MM/dd')}"><br/>
+		部门：<select name="dep.did">
+				<option th:each="dep:${deps}" 
+					th:value="${dep.did}" th:selected="${dep.did==emp.dep.did}">
+					[[${dep.dname}]]
+				</option>
+			</select><br/>
+		<input type="submit" value="修改"><br/>
+	</form>
+</body>
+</html>
